@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Guillermo Díaz García
  */
 public class Gasolinera {
+    //private final Queue<String> colaEntrada = new LinkedList<>();
     private final Queue<Integer> esperandoOperario = new LinkedList<>();
     private final Surtidor[] surtidores = new Surtidor[8];
     private final Semaphore semEntrada = new Semaphore(8,true);
@@ -24,8 +26,11 @@ public class Gasolinera {
     private final Semaphore semSurtVehiculos7 = new Semaphore(1);
     private final Semaphore semOperarios = new Semaphore(1);
     private final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    //private final JTextField campoCola;
     
+    //public Gasolinera (JTextField campoCola){
     public Gasolinera (){
+        //this.campoCola = campoCola;
         for(int i=0;i<8;i++){
             Surtidor surtidor = new Surtidor(i);
             surtidores[i] = surtidor;
@@ -34,7 +39,10 @@ public class Gasolinera {
     
     public void entrarGasolinera(String vehiculo){
         int surt = -1;
-        try{ 
+        try{
+            //colaEntrada.add(vehiculo);
+            //campoCola.setText(colaEntrada.toString());
+            
             semEntrada.acquire();
             surt = surtidorLibre();
         } catch(Exception ex){

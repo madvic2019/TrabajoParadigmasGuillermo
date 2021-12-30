@@ -64,4 +64,29 @@ public class Operario extends Thread{
     public int getVehiculosPorDescanso() {
         return vehiculosPorDescanso;
     }
+
+    public int getNum() {
+        return num;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Gasolinera getGasolinera() {
+        return gasolinera;
+    }
+
+    public Random getRand() {
+        return rand;
+    }
+
+    public SimpleDateFormat getFormatoFecha() {
+        return formatoFecha;
+    }
+    
+    @Override
+    public String toString(){
+        return nombre;
+    }
 }

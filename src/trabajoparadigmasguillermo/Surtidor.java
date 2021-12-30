@@ -5,9 +5,9 @@ package trabajoparadigmasguillermo;
  * @author Guillermo Díaz García
  */
 public class Surtidor {
-    private boolean libre;
-    private Operario operario;
-    private Vehiculo vehiculo;
+    private boolean libre = true;
+    private int operario = -1;
+    private String vehiculo = null;
     private final int numero;
     
     public Surtidor (int numero){
@@ -22,19 +22,19 @@ public class Surtidor {
         this.libre = libre;
     }
 
-    public Operario getOperario() {
+    public int getOperario() {
         return operario;
     }
 
-    public void setOperario(Operario operario) {
+    public void setOperario(int operario) {
         this.operario = operario;
     }
 
-    public Vehiculo getVehiculo() {
+    public String getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(String vehiculo) {
         this.vehiculo = vehiculo;
     }
 

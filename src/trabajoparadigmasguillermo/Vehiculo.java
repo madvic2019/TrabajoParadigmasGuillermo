@@ -1,6 +1,7 @@
 package trabajoparadigmasguillermo;
 
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -9,6 +10,7 @@ import java.util.Random;
 public class Vehiculo  extends Thread{
     private final String nombre;
     private final Gasolinera gasolinera;
+    private final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     public Vehiculo (int num, Gasolinera gasolinera){
         this.nombre = "Vehículo"+num;
@@ -18,17 +20,14 @@ public class Vehiculo  extends Thread{
     @Override
     public void run(){
         int surt = -1;
-        System.out.println(nombre + " entrando en gasolinera");
+        
+        Date now = new Date();
+        System.out.println(formatoFecha.format(now) + " - " + nombre + " entrando en gasolinera");
         //Log here
-        while(surt == -1){
-            surt = gasolinera.entrarGasolinera(nombre);
-        }
-
-        System.out.println(nombre + "entrando a surtidor");
-        //Log here
-        gasolinera.accederSurtidor(nombre, surt);
-
-        System.out.println(nombre + " saliendo de gasolinera");
+        gasolinera.entrarGasolinera(nombre);
+        
+        now = new Date();
+        System.out.println(formatoFecha.format(now) + " - " + nombre + " saliendo de gasolinera");
     }
     
     @Override
@@ -42,9 +41,5 @@ public class Vehiculo  extends Thread{
 
     public Gasolinera getGasolinera() {
         return gasolinera;
-    }
-
-    public Random getRand() {
-        return rand;
     }
 }

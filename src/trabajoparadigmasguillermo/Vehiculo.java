@@ -1,17 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package trabajoparadigmasguillermo;
+
+import java.util.Random;
 
 /**
  *
  * @author Guillermo Díaz García
  */
 public class Vehiculo  extends Thread{
-    public String nombre;
-    public Vehiculo (int num){
-        this.nombre = "Vehículo"+Integer.toString(num);
+    private final String nombre;
+    private final Gasolinera gasolinera;
+    
+    public Vehiculo (int num, Gasolinera gasolinera){
+        this.nombre = "Vehículo"+num;
+        this.gasolinera = gasolinera;
+    }
+    
+    @Override
+    public void run(){
+        int surt = -1;
+        System.out.println(nombre + " entrando en gasolinera");
+        //Log here
+        while(surt == -1){
+            surt = gasolinera.entrarGasolinera(nombre);
+        }
+
+        System.out.println(nombre + "entrando a surtidor");
+        //Log here
+        gasolinera.accederSurtidor(nombre, surt);
+
+        System.out.println(nombre + " saliendo de gasolinera");
+    }
+    
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Gasolinera getGasolinera() {
+        return gasolinera;
+    }
+
+    public Random getRand() {
+        return rand;
     }
 }

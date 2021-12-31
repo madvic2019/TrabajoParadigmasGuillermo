@@ -9,10 +9,12 @@ import java.util.Date;
  */
 public class Vehiculo  extends Thread{
     private final String nombre;
-    private final Gasolinera gasolinera;
+//    private final Gasolinera gasolinera;
+    private final MainFrame.Gasolinera gasolinera;
     private final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
-    public Vehiculo (int num, Gasolinera gasolinera){
+//    public Vehiculo (int num, Gasolinera gasolinera){
+    public Vehiculo (int num, MainFrame.Gasolinera gasolinera){
         this.nombre = "Vehículo"+num;
         this.gasolinera = gasolinera;
     }
@@ -37,9 +39,5 @@ public class Vehiculo  extends Thread{
 
     public String getNombre() {
         return nombre;
-    }
-
-    public Gasolinera getGasolinera() {
-        return gasolinera;
     }
 }

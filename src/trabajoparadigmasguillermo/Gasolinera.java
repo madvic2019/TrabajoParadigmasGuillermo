@@ -12,7 +12,7 @@ import javax.swing.JTextField;
  * @author Guillermo Díaz García
  */
 public class Gasolinera {
-    //private final Queue<String> colaEntrada = new LinkedList<>();
+    private final Queue<String> colaEntrada = new LinkedList<>();
     private final Queue<Integer> esperandoOperario = new LinkedList<>();
     private final Surtidor[] surtidores = new Surtidor[8];
     private final Semaphore semEntrada = new Semaphore(8,true);
@@ -26,23 +26,23 @@ public class Gasolinera {
     private final Semaphore semSurtVehiculos7 = new Semaphore(1);
     private final Semaphore semOperarios = new Semaphore(1);
     private final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    //private final JTextField campoCola;
-    
-    //public Gasolinera (JTextField campoCola){
-    public Gasolinera (){
+    private final MainFrame context;
+
+    public Gasolinera (MainFrame context){
         //this.campoCola = campoCola;
         for(int i=0;i<8;i++){
             Surtidor surtidor = new Surtidor(i);
             surtidores[i] = surtidor;
         }
+        this.context = context;
     }
-    
+
     public void entrarGasolinera(String vehiculo){
         int surt = -1;
         try{
-            //colaEntrada.add(vehiculo);
-            //campoCola.setText(colaEntrada.toString());
-            
+            colaEntrada.add(vehiculo);
+            actualizarCola();
+
             semEntrada.acquire();
             surt = surtidorLibre();
         } catch(Exception ex){
@@ -53,6 +53,9 @@ public class Gasolinera {
             Date now = new Date();
             System.out.println(formatoFecha.format(now) + " - " + vehiculo + " entrando a surtidor " + surt);
             //Log here
+
+            colaEntrada.remove(vehiculo);
+            actualizarCola();
             surtidores[surt].setVehiculo(vehiculo);
             surtidores[surt].setLibre(false);
             esperandoOperario.add(surt);
@@ -82,7 +85,7 @@ public class Gasolinera {
             semEntrada.release();
         }
     }
-    
+
     public int operarSurtidor(int operario){
         int surt = -1;
         try{
@@ -102,7 +105,7 @@ public class Gasolinera {
         }
         return surt;
     }
-    
+
     public void surtidorTerminado(int surt){
         try{
             semOperarios.acquire();
@@ -135,7 +138,15 @@ public class Gasolinera {
             semOperarios.release();
         }
     }
-    
+
+    private void actualizarCola(){
+        String textoCola = "";
+        for(String nav : colaEntrada){
+            textoCola += nav + ", ";
+        }
+        context.actualizarCola(textoCola);
+    }
+
     private int surtidorLibre(){
         for(Surtidor nav : surtidores){
             if(nav.isLibre()) return nav.getNumero();

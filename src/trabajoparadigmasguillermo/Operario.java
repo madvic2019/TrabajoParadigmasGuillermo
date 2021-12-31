@@ -11,13 +11,15 @@ import java.util.Random;
 public class Operario extends Thread{
     private final int num;
     private final String nombre;
-    private final Gasolinera gasolinera;
+//    private final Gasolinera gasolinera;
+    private final MainFrame.Gasolinera gasolinera;
     private final int vehiculosPorDescanso;
     private final Random rand;
     private final int tiempoDescanso = 5000;
     private final SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
-    public Operario (int num, Gasolinera gasolinera, int vehiculosPorDescanso, Random rand){
+//    public Operario (int num, Gasolinera gasolinera, int vehiculosPorDescanso, Random rand){
+    public Operario (int num, MainFrame.Gasolinera gasolinera, int vehiculosPorDescanso, Random rand){
         this.num = num;
         this.nombre = "Operario"+num;
         this.gasolinera = gasolinera;
@@ -71,10 +73,6 @@ public class Operario extends Thread{
 
     public String getNombre() {
         return nombre;
-    }
-
-    public Gasolinera getGasolinera() {
-        return gasolinera;
     }
 
     public Random getRand() {

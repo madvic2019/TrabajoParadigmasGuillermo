@@ -58,9 +58,10 @@ public class MainFrame extends javax.swing.JFrame {
             int surt = -1;
             try{
                 colaEntrada.add(vehiculo);
-                actualizarCola();
+
 
                 semEntrada.acquire();
+                actualizarCola();
                 surt = surtidorLibre();
             } catch(Exception ex){
                 Date now = new Date();
@@ -79,18 +80,25 @@ public class MainFrame extends javax.swing.JFrame {
                 switch(surt){
                     case 0:
                         semSurtVehiculos0.acquire();
+                        break;
                     case 1:
                         semSurtVehiculos1.acquire();
+                        break;
                     case 2:
                         semSurtVehiculos2.acquire();
+                        break;
                     case 3:
                         semSurtVehiculos3.acquire();
+                        break;
                     case 4:
                         semSurtVehiculos4.acquire();
+                        break;
                     case 5:
                         semSurtVehiculos5.acquire();
+                        break;
                     case 6:
                         semSurtVehiculos6.acquire();
+                        break;
                     case 7:
                         semSurtVehiculos7.acquire();
                 }

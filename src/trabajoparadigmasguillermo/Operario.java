@@ -35,7 +35,7 @@ public class Operario extends Thread{
                 int surtidor = gasolinera.operarSurtidor(num);
                 if(surtidor != -1){
                     try{
-                        long tiempoOperar = 4000 + (long)rand.nextInt(4000);
+                        long tiempoOperar = 40000 + (long)rand.nextInt(4000);
                         Date now = new Date();
                         System.out.println(formatoFecha.format(now) + " - " + nombre + " operando surtidor " + surtidor + " durante " + (tiempoOperar/1000) + " segundos");
                         //Log here

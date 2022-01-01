@@ -69,7 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
                 //Log here
             } try{
                 Date now = new Date();
-                System.out.println(formatoFecha.format(now) + " - " + vehiculo + " entrando a surtidor " + surt);
+                System.out.println(formatoFecha.format(now) + " - " + vehiculo + " entrando a surtidor " + (surt+1));
                 //Log here
                 
                 colaEntrada.remove(vehiculo);
@@ -79,28 +79,37 @@ public class MainFrame extends javax.swing.JFrame {
                 esperandoOperario.add(surt);
                 switch(surt){
                     case 0:
+                        jCampoVeh1.setText(vehiculo);
                         semSurtVehiculos0.acquire();
                         break;
                     case 1:
+                        jCampoVeh2.setText(vehiculo);
                         semSurtVehiculos1.acquire();
                         break;
                     case 2:
+                        jCampoVeh3.setText(vehiculo);
                         semSurtVehiculos2.acquire();
                         break;
                     case 3:
+                        jCampoVeh4.setText(vehiculo);
                         semSurtVehiculos3.acquire();
                         break;
                     case 4:
+                        jCampoVeh5.setText(vehiculo);
                         semSurtVehiculos4.acquire();
                         break;
                     case 5:
+                        jCampoVeh6.setText(vehiculo);
                         semSurtVehiculos5.acquire();
                         break;
                     case 6:
+                        jCampoVeh7.setText(vehiculo);
                         semSurtVehiculos6.acquire();
                         break;
                     case 7:
+                        jCampoVeh8.setText(vehiculo);
                         semSurtVehiculos7.acquire();
+                        break;
                 }
             } catch(Exception ex){
                 Date now = new Date();
@@ -121,6 +130,32 @@ public class MainFrame extends javax.swing.JFrame {
                     surt = surtidorEsperandoOperario();
                 }
                 surtidores[surt].setOperario(operario);
+                switch(surt){
+                    case 0:
+                        jCampoOper1.setText("Operario" + operario);
+                        break;
+                    case 1:
+                        jCampoOper2.setText("Operario" + operario);
+                        break;
+                    case 2:
+                        jCampoOper3.setText("Operario" + operario);
+                        break;
+                    case 3:
+                        jCampoOper4.setText("Operario" + operario);
+                        break;
+                    case 4:
+                        jCampoOper5.setText("Operario" + operario);
+                        break;
+                    case 5:
+                        jCampoOper6.setText("Operario" + operario);
+                        break;
+                    case 6:
+                        jCampoOper7.setText("Operario" + operario);
+                        break;
+                    case 7:
+                        jCampoOper8.setText("Operario" + operario);
+                        break;
+                }
             } catch(Exception ex){
                 Date now = new Date();
                 System.out.println(formatoFecha.format(now) + " - Error while operating surt " + surt);
@@ -139,21 +174,45 @@ public class MainFrame extends javax.swing.JFrame {
                 surtidores[surt].setLibre(true);
                 switch(surt){
                     case 0:
+                        jCampoOper1.setText("");
+                        jCampoVeh1.setText("");
                         semSurtVehiculos0.release();
+                        break;
                     case 1:
+                        jCampoOper2.setText("");
+                        jCampoVeh2.setText("");
                         semSurtVehiculos1.release();
+                        break;
                     case 2:
+                        jCampoOper3.setText("");
+                        jCampoVeh3.setText("");
                         semSurtVehiculos2.release();
+                        break;
                     case 3:
+                        jCampoOper4.setText("");
+                        jCampoVeh4.setText("");
                         semSurtVehiculos3.release();
+                        break;
                     case 4:
+                        jCampoOper5.setText("");
+                        jCampoVeh5.setText("");
                         semSurtVehiculos4.release();
+                        break;
                     case 5:
+                        jCampoOper6.setText("");
+                        jCampoVeh6.setText("");
                         semSurtVehiculos5.release();
+                        break;
                     case 6:
+                        jCampoOper7.setText("");
+                        jCampoVeh7.setText("");
                         semSurtVehiculos6.release();
+                        break;
                     case 7:
+                        jCampoOper8.setText("");
+                        jCampoVeh8.setText("");
                         semSurtVehiculos7.release();
+                        break;
                 }
             } catch (Exception ex){
                 Date now = new Date();

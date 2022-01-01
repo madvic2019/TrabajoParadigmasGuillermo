@@ -37,7 +37,7 @@ public class Operario extends Thread{
                     try{
                         long tiempoOperar = 40000 + (long)rand.nextInt(4000);
                         Date now = new Date();
-                        System.out.println(formatoFecha.format(now) + " - " + nombre + " operando surtidor " + surtidor + " durante " + (tiempoOperar/1000) + " segundos");
+                        System.out.println(formatoFecha.format(now) + " - " + nombre + " operando surtidor " + (surtidor+1) + " durante " + (tiempoOperar/1000) + " segundos");
                         //Log here
                         sleep(tiempoOperar);
                     } catch(InterruptedException ex){

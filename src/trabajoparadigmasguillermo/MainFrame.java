@@ -58,25 +58,17 @@ public class MainFrame extends javax.swing.JFrame {
             int surt = -1;
             try{
                 colaEntrada.add(vehiculo);
-
-
                 semEntrada.acquire();
                 actualizarCola();
                 surt = surtidorLibre();
             } catch(Exception ex){
                 Date now = new Date();
-                System.out.println(formatoFecha.format(now) + " - Error awaiting " + vehiculo + " while waiting at entrance");
+                System.out.println(formatoFecha.format(now) + " - Error ENTRADA COLA awaiting " + vehiculo + " while waiting at entrance");
                 //Log here
             } try{
                 Date now = new Date();
                 System.out.println(formatoFecha.format(now) + " - " + vehiculo + " entrando a surtidor " + (surt+1));
                 //Log here
-                
-                colaEntrada.remove(vehiculo);
-                actualizarCola();
-                surtidores[surt].setVehiculo(vehiculo);
-                surtidores[surt].setLibre(false);
-                esperandoOperario.add(surt);
                 switch(surt){
                     case 0:
                         jCampoVeh1.setText(vehiculo);
@@ -110,10 +102,21 @@ public class MainFrame extends javax.swing.JFrame {
                         jCampoVeh8.setText(vehiculo);
                         semSurtVehiculos7.acquire();
                         break;
+                                      
                 }
+                if (surt != -1) {
+                    colaEntrada.remove(vehiculo);
+                    actualizarCola();
+                    surtidores[surt].setVehiculo(vehiculo);
+                    surtidores[surt].setLibre(false);
+                    esperandoOperario.add(surt);
+                }
+                
+                
+                
             } catch(Exception ex){
                 Date now = new Date();
-                System.out.println(formatoFecha.format(now) + " - Error while waiting for operator in surt " + surt);
+                System.out.println(formatoFecha.format(now) + " - Error ENTRADA SURTIDOR while waiting for operator in surt " + surt);
                 //Log error here
             } finally {
                 semEntrada.release();

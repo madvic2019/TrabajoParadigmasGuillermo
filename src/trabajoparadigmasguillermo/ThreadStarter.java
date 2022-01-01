@@ -40,7 +40,7 @@ public class ThreadStarter extends Thread{
             System.out.println(formatoFecha.format(now) + " - Creado " + vehiculo);
             vehiculo.start();
             try{
-                Thread.sleep(500+(long)rand.nextInt(5500));
+                Thread.sleep(500+(long)rand.nextInt(500));
             }
             catch (InterruptedException ex) {
                 System.out.println("Error in sleep after creating " + vehiculo);

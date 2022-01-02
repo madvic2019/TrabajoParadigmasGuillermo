@@ -58,8 +58,8 @@ public class MainFrame extends javax.swing.JFrame {
             int surt = -1;
             try{
                 colaEntrada.add(vehiculo);
-                semEntrada.acquire();
                 actualizarCola();
+                semEntrada.acquireUninterruptibly();
                 surt = surtidorLibre();
             } catch(Exception ex){
                 Date now = new Date();
@@ -71,32 +71,39 @@ public class MainFrame extends javax.swing.JFrame {
                 //Log here
                 switch(surt){
                     case 0:
-                        jCampoVeh1.setText(vehiculo);
                         semSurtVehiculos0.acquire();
+                        jCampoVeh1.setText(vehiculo);
+                        
                         break;
                     case 1:
-                        jCampoVeh2.setText(vehiculo);
                         semSurtVehiculos1.acquire();
+                        jCampoVeh2.setText(vehiculo);
+                        
                         break;
                     case 2:
-                        jCampoVeh3.setText(vehiculo);
                         semSurtVehiculos2.acquire();
+                        jCampoVeh3.setText(vehiculo);
+                        
                         break;
                     case 3:
-                        jCampoVeh4.setText(vehiculo);
                         semSurtVehiculos3.acquire();
+                        jCampoVeh4.setText(vehiculo);
+                        
                         break;
                     case 4:
-                        jCampoVeh5.setText(vehiculo);
                         semSurtVehiculos4.acquire();
+                        jCampoVeh5.setText(vehiculo);
+                        
                         break;
                     case 5:
-                        jCampoVeh6.setText(vehiculo);
                         semSurtVehiculos5.acquire();
+                        jCampoVeh6.setText(vehiculo);
+                        
                         break;
                     case 6:
-                        jCampoVeh7.setText(vehiculo);
                         semSurtVehiculos6.acquire();
+                        jCampoVeh7.setText(vehiculo);
+                        
                         break;
                     case 7:
                         jCampoVeh8.setText(vehiculo);
